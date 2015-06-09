@@ -1,0 +1,49 @@
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8;charset=utf-8">
+	<title>HTML5实现图片拖动，旋转，放大，拉伸等特效-xw素材网</title>
+		<!--[if IE]><script type="text/javascript" src="canvas_files/excanvas.js"></script><![endif]-->
+		<style type="text/css" media="screen">
+		body 	{ font: 75% "Lucida Grande", "Trebuchet MS", Verdana, sans-serif; }
+		canvas 	{ background-color: transparent; border: 1px solid gray; top: 0; left: 0; position: absolute;}
+		canvas.resize-ne { cursor: ne-resize; }
+		canvas.resize-se { cursor: se-resize; }
+		canvas.resize-sw { cursor: sw-resize; }
+		canvas.resize-nw { cursor: nw-resize; }
+		canvas.move { cursor: move; }
+		canvas.default { cursor: default; }
+		img 	{ display: block; visibility: hidden; position: absolute; top: -1000; left: -1000; }
+		input 	{ margin-left: 20px; }
+		fieldset { width: 280px; float: left; }
+		.fieldset { width: 200px; float: left; }
+		#ft 	{ background-color: #eee; height: 70px; width: 99%; border-top: 1px solid #ccc; padding: 5px; position: absolute; top: 0; left: 0; }
+		#ft span { width: 100%; }
+	</style>
+</head>
+<body id="canvasdemo" onLoad="">	
+	<canvas id="canvid1"></canvas>
+	
+	<img id="img4" src="4.jpg" />
+	<img id="img1" src="7.jpg" />
+	<img id="img2" src="8.jpg" />
+	<img id="img3" src="9.jpg" />
+	<img id="img4" src="5.jpg" />
+	<img id="bg" src="bg.jpg" />
+	
+	<div id="ft">
+此插件由xw素材网整理
+: <a href="http://www.xwcms.net/" title="此插件由xw素材网整理">www.xwcms.net </a>
+<br>
+		<div class="fieldset">
+			<input type="button" id="jpegbutton" value="Export to JPEG" />
+			<input type="button" id="pngbutton" value="Export to PNG (heavy)" />
+		</div>
+		<fieldset>
+			<legend>Photo</legend>
+			<span><input type="radio" name="some_name" value="" id="togglenone" /> None</span>
+			<span><input type="radio" name="some_name" value="" id="toggleborders" /> Border</span>
+			<span><input type="radio" name="some_name" value="" id="togglepolaroid" /> Polaroid</span>
+		</fieldset>
+		<span><input type="checkbox" name="some_name" value="" id="showcorners" /> 显示角落</span>
+	</div><br>
+</body>
+
