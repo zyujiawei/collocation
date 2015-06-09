@@ -1,4 +1,4 @@
-Canvas = window.Canvas || {};
+var Canvas = window.Canvas || {};
 
 (function () {
 
