@@ -1,52 +1,65 @@
 <head>
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8;charset=utf-8">
-	<title>HTML5实现图片拖动，旋转，放大，拉伸等特效-xw素材网</title>
+	<title>collocation</title>
 		<!--[if IE]><script type="text/javascript" src="canvas_files/excanvas.js"></script><![endif]-->
-		<style type="text/css" media="screen">
-		body 	{ font: 75% "Lucida Grande", "Trebuchet MS", Verdana, sans-serif; }
-		canvas 	{ background-color: transparent; border: 1px solid gray; top: 0; left: 0; position: absolute;}
-		canvas.resize-ne { cursor: ne-resize; }
-		canvas.resize-se { cursor: se-resize; }
-		canvas.resize-sw { cursor: sw-resize; }
-		canvas.resize-nw { cursor: nw-resize; }
-		canvas.move { cursor: move; }
-		canvas.default { cursor: default; }
-		img 	{ display: block; visibility: hidden; position: absolute; top: -1000; left: -1000; }
-		input 	{ margin-left: 20px; }
-		fieldset { width: 280px; float: left; }
-		.fieldset { width: 200px; float: left; }
-		#ft 	{ background-color: #eee; height: 70px; width: 99%; border-top: 1px solid #ccc; padding: 5px; position: absolute; top: 0; left: 0; }
-		#ft span { width: 100%; }
-	</style>
 	<script type="text/javascript" charset="utf-8">
 		
 	</script>
 </head>
-<body id="canvasdemo" onLoad="">	
-	<canvas id="canvid1"></canvas>
-	
-	<img id="img4" src="4.jpg" />
-	<img id="img1" src="7.jpg" />
-	<img id="img2" src="8.jpg" />
-	<img id="img3" src="9.jpg" />
-	<img id="img4" src="5.jpg" />
-	<img id="bg" src="bg.jpg" />
-	
-	<div id="ft">
-此插件由xw素材网整理
-: <a href="http://www.xwcms.net/" title="此插件由xw素材网整理">www.xwcms.net </a>
-<br>
-		<div class="fieldset">
-			<input type="button" id="jpegbutton" value="Export to JPEG" />
-			<input type="button" id="pngbutton" value="Export to PNG (heavy)" />
-		</div>
-		<fieldset>
-			<legend>Photo</legend>
-			<span><input type="radio" name="some_name" value="" id="togglenone" /> None</span>
-			<span><input type="radio" name="some_name" value="" id="toggleborders" /> Border</span>
-			<span><input type="radio" name="some_name" value="" id="togglepolaroid" /> Polaroid</span>
-		</fieldset>
-		<span><input type="checkbox" name="some_name" value="" id="showcorners" /> 显示角落</span>
-	</div><br>
+<body id="canvasdemo" onLoad="">
+	<div id="app" class="container-fluid">
+			<div class="row" style="margin: 30px;height: 100%" >
+				<div class="col-md-8 maincolumn" id="container" align="center" style="padding: 10px">
+					<div id="optionpanel" class="container-fluid">
+						<div class="container btn-group btn-group-lg row" role="group">
+							<input type="button" id="jpegbutton" value="Export to JPEG"/>
+							<button type="button" id="pngbutton">Export to PNG (heavy)</button>
+							<span><input type="checkbox" name="some_name" value="" id="showcorners" /> 显示角落</span>
+						</div>
+									
+					</div>
+					<div id="canvascontainer" class="container-fluid">
+						<div class="">
+							<canvas id="canvid1"></canvas>
+							<div id="imgcontainer">
+							<img class="canvasimg" id="img4" src="1.png" />
+							<img class="canvasimg" id="img1" src="2.png" />
+							<img class="canvasimg" id="img2" src="3.png" />
+							<img class="canvasimg" id="img3" src="4.png" />
+							<img class="canvasimg" id="img5" src="5.png" />
+						</div>					
+					</div>
+					</div>
+								
+				</div>
+				<div class="col-md-4 maincolumn">
+					<div id="panel" style="height:20%">
+						<ul class="nav nav-tabs" id="tabspanel">
+						  <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">选择宝贝</a></li>
+						  <li role="presentation"><a href="#bookmarked" aria-controls="bookmarked" role="tab" data-toggle="tab">收藏</a></li>
+						</ul>
+					</div>
+					<div class="tab-content" style="height:80%">
+					  <div role="tabpanel" class="tab-pane active" id="home">
+					  	<div class="row">
+					  		<div class="col-xs-6 thumbnailcol">
+					  			<a href="#" class="thumbnail">
+					  				<img src="e79cc935-51bd-474e-af42-c52e15b852ef--100x100.jpg" alt="...">
+					  			</a>
+					  		</div>
+					  		<div class="col-xs-6 thumbnailcol">
+					  			<a href="#" class="thumbnail">
+					  				<img src="f5b309d6-902b-4034-ae31-8855668273e6--100x100.jpg" alt="...">
+					  			</a>
+					  		</div>
+					  	</div>
+					  </div>
+					  <div role="tabpanel" class="tab-pane" id="bookmarked">
+						<span>test2</span>
+					  </div>
+					</div>
+				</div>
+			</div>
+	</div>
 </body>
 
