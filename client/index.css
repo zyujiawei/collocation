@@ -55,4 +55,16 @@ fieldset { width: 280px; float: left; }
 	height:150px;
 }
 
-.canvasimg 	{ display: block; visibility: hidden; position: absolute; }
+.dragableimg 	{ display: block; width: 100px;height:100px;cursor: move }
+
+.firstrow{
+	height:20%;
+}
+.secondrow{
+	height:80%;
+}
+
+#canvas{
+	height:100%;
+	
+}

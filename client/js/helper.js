@@ -1,3 +1,4 @@
+/*
 var CanvasDemo = function() {
 	var YD = YAHOO.util.Dom;
 	var YE = YAHOO.util.Event;
@@ -86,7 +87,7 @@ var CanvasDemo = function() {
 }();
 
 YAHOO.util.Event.on(window, 'load', CanvasDemo.init, CanvasDemo, true);
-
+*/
 var winWidth = 0;
 var winHeight = 0;
 
@@ -118,13 +119,23 @@ function findDimensions() //函数：获取尺寸
 
 function resizeCanvas(){
 	findDimensions();
-	console.log($("#app").attr("style"));
+	//console.log($("#app").attr("style"));
 	$("#app").attr("style","height: "+winHeight+"px");
-	console.log(winHeight);
+	//console.log(winHeight);
 }
                //调用函数，获取数值
 window.onresize=resizeCanvas;
 
 $(document).ready(function(){
 	resizeCanvas();
+	YUI().use('dd-delegate', 'dd-constrain',function(Y) {
+		console.log(Y);
+	    var del = new Y.DD.Delegate({
+	        container: '#canvas',
+	        nodes: '.dragableimg'
+	    });
+	    del.dd.plug(Y.Plugin.DDConstrained, {
+        	constrain2node: '#canvas'
+    	});
+	});
 });
