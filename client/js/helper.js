@@ -90,6 +90,7 @@ YAHOO.util.Event.on(window, 'load', CanvasDemo.init, CanvasDemo, true);
 */
 var winWidth = 0;
 var winHeight = 0;
+var img=[];
 
 function findDimensions() //函数：获取尺寸
 {
@@ -123,19 +124,57 @@ function resizeCanvas(){
 	$("#app").attr("style","height: "+winHeight+"px");
 	//console.log(winHeight);
 }
+
+function setImgDimensions(){
+	$(".canvasimg").each(function(){
+		var height = this.naturalHeight/2;
+		var width = this.naturalWidth/2;
+		var ratio = width/height;
+		this.height = height;
+		this.width = width;
+		var parentdiv = $(this).parent();
+		$(parentdiv).css({"height":height+"px","width":width+"px"});
+	})
+}
                //调用函数，获取数值
 window.onresize=resizeCanvas;
 
 $(document).ready(function(){
 	resizeCanvas();
-	YUI().use('dd-delegate', 'dd-constrain',function(Y) {
-		console.log(Y);
+	//setImgDimensions();
+	YUI().use('dd-delegate', 'dd-constrain','resize',function(Y) {
 	    var del = new Y.DD.Delegate({
 	        container: '#canvas',
-	        nodes: '.dragableimg'
+	        nodes: '.yui3-resize-wrapper'
 	    });
 	    del.dd.plug(Y.Plugin.DDConstrained, {
         	constrain2node: '#canvas'
     	});
 	});
+
+	YUI().use('resize',function(Y){
+		var resize = new Y.Resize({
+    		node: "#img4"
+    	});
+
+    	var resize1 = new Y.Resize({
+    		node: "#img1"
+    	});
+    	resize.plug(Y.Plugin.ResizeConstrained, {
+	        preserveRatio: true
+    	});
+
+    	resize.on('resize:resize',function(){
+    		//var height = $(".casvasimg")
+    		
+    		var height = $(this.get('node')._node).css("height");
+    		var width = $(this.get('node')._node).css("width");
+    		//console.log($(this.get('node')._node).parent().parent());
+    		//$(this.get('node')._node).parent().parent().attr("style","height: "+height+"px;width: "+width+"px");
+    	});
+	});
+
+
+	
+
 });

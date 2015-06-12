@@ -55,7 +55,7 @@ fieldset { width: 280px; float: left; }
 	height:150px;
 }
 
-.dragableimg 	{ display: block; width: 100px;height:100px;cursor: move }
+.canvasimg {display: block; cursor: move}
 
 .firstrow{
 	height:20%;
