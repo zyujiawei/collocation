@@ -136,13 +136,25 @@ function setImgDimensions(){
 		$(parentdiv).css({"height":height+"px","width":width+"px"});
 	})
 }
+
+function addImage(){
+
+}
+
+
+
+
+
+
                //调用函数，获取数值
 window.onresize=resizeCanvas;
 
 $(document).ready(function(){
 	resizeCanvas();
 	//setImgDimensions();
-	YUI().use('dd-delegate', 'dd-constrain','resize',function(Y) {
+	YUI().use('dd-delegate', 'dd-constrain','event',function(Y) {
+	    
+		// --------------drag and drop functions here---------------------
 	    var del = new Y.DD.Delegate({
 	        container: '#canvas',
 	        nodes: '.yui3-resize-wrapper'
@@ -150,9 +162,20 @@ $(document).ready(function(){
 	    del.dd.plug(Y.Plugin.DDConstrained, {
         	constrain2node: '#canvas'
     	});
+    	//----------------------------------------------------------------
+
+    	//event listeners,handle add Image function when image is clicked-
+
+    	var clickableimg = Y.all(".thumbnail");
+    	clickableimg.on("click",function(e){
+    		console.log(e.target._node.src);
+    	})
+
+
 	});
 
 	YUI().use('resize',function(Y){
+		//handles resize function here
 		var resize = new Y.Resize({
     		node: "#img4"
     	});
@@ -164,14 +187,13 @@ $(document).ready(function(){
 	        preserveRatio: true
     	});
 
-    	resize.on('resize:resize',function(){
-    		//var height = $(".casvasimg")
-    		
-    		var height = $(this.get('node')._node).css("height");
-    		var width = $(this.get('node')._node).css("width");
-    		//console.log($(this.get('node')._node).parent().parent());
-    		//$(this.get('node')._node).parent().parent().attr("style","height: "+height+"px;width: "+width+"px");
-    	});
+
+
+
+
+
+
+
 	});
 
 
