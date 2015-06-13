@@ -169,6 +169,7 @@ $(document).ready(function(){
     	var clickableimg = Y.all(".thumbnail");
     	clickableimg.on("click",function(e){
     		console.log(e.target._node.src);
+    		
     	})
 
 
