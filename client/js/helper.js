@@ -90,7 +90,6 @@ YAHOO.util.Event.on(window, 'load', CanvasDemo.init, CanvasDemo, true);
 */
 var winWidth = 0;
 var winHeight = 0;
-var img=[];
 
 function findDimensions() //函数：获取尺寸
 {
@@ -125,20 +124,22 @@ function resizeCanvas(){
 	//console.log(winHeight);
 }
 
-function setImgDimensions(){
-	$(".canvasimg").each(function(){
-		var height = this.naturalHeight/2;
-		var width = this.naturalWidth/2;
-		var ratio = width/height;
-		this.height = height;
-		this.width = width;
-		var parentdiv = $(this).parent();
-		$(parentdiv).css({"height":height+"px","width":width+"px"});
-	})
-}
 
-function addImage(){
+function addResizeEvent(selector){
+	YUI().use('resize',function(Y){
+		//handles resize function here
+		var resize = new Y.Resize({
+    		node: selector
+    	});
 
+    	resize.plug(Y.Plugin.ResizeConstrained, {
+	        preserveRatio: true
+    	});
+
+    	resize.on("resize:resize",function (e) {
+    		
+    	})
+	});		
 }
 
 
@@ -150,8 +151,10 @@ function addImage(){
 window.onresize=resizeCanvas;
 
 $(document).ready(function(){
+	//varible for img id
+	var imgcount = 0;
+
 	resizeCanvas();
-	//setImgDimensions();
 	YUI().use('dd-delegate', 'dd-constrain','event',function(Y) {
 	    
 		// --------------drag and drop functions here---------------------
@@ -167,37 +170,38 @@ $(document).ready(function(){
     	//event listeners,handle add Image function when image is clicked-
 
     	var clickableimg = Y.all(".thumbnail");
+
     	clickableimg.on("click",function(e){
-    		console.log(e.target._node.src);
-    		
-    	})
+    		var src = e.target._node.src;
+    		if (!src){
+    			src = $(e.target._node).children().attr("src");
+    		}
+    		$("#canvas").append("<img class='canvasimg' id='img"+imgcount+"' src='"+src+"'/>");
+    		var imgid = "#img"+imgcount;
+    		addResizeEvent(imgid);
+    		imgcount++;
+    	});
+
+    	var jpegbutton = Y.one("#jpegbutton");
+
+    	jpegbutton.on("click",function(e){
+    		console.log("i am here");
+        // html2canvas(document.querySelector("#app"), {canvas: canvas}).then(function(canvas) {
+        //     console.log('Drew on the existing canvas');
+        // });
+        html2canvas($("#canvascontainer"),{
+        	onrendered: function(canvas) {
+        		var imageurl = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");   
+                window.location.href=imageurl; // it will save locally  
+        		console.log(imageurl);
+        	}
+        })
+    	});
 
 
 	});
 
-	YUI().use('resize',function(Y){
-		//handles resize function here
-		var resize = new Y.Resize({
-    		node: "#img4"
-    	});
-
-    	var resize1 = new Y.Resize({
-    		node: "#img1"
-    	});
-    	resize.plug(Y.Plugin.ResizeConstrained, {
-	        preserveRatio: true
-    	});
-
-
-
-
-
-
-
-
-	});
 
 
 	
-
 });
