@@ -29,8 +29,8 @@ function resizeCanvas() //函数：获取尺寸
     // console.log(winHeight);
     // console.log(winWidth);
     $("#app").attr("style","height: "+winHeight+"px");
-    var canvasHeight = winHeight * 5 / 12;
-    var canvasWidth = winWidth * 5 / 12;
+    var canvasHeight = $("#canvascontainer").height();
+    var canvasWidth = $("#canvascontainer").width();
     var canvas = document.getElementById("canvas");
     canvas.height = canvasHeight;
     canvas.width = canvasWidth;
@@ -120,7 +120,7 @@ $(document).ready(function(){
             imageBottom = imageY + imageHeight
             draw(true, false);
         }
-        imgArray.push(img);  
+        imgArray.push(img);
     }
 
 
@@ -130,7 +130,7 @@ $(document).ready(function(){
         for (x in imgArray){
             // clear the canvas
             var img = imgArray[x];
-
+            console.log(x);
             // draw the image
             ctx.drawImage(img, 0, 0, img.width, img.height, imageX, imageY, imageWidth, imageHeight);
 
